@@ -16,7 +16,7 @@ public class MoveCaracter : MonoBehaviour {
     public float vertical { get { return m_vertical; } }
 
     void Start () {
-        
+        rb2d = this.GetComponent<Rigidbody2D>();
 	}
 
     //Les FixedUpdates ne dépendent pas du framerate du pc
