@@ -52,8 +52,6 @@ public class CalculateMove : MonoBehaviour {
     public bool nextToPathB;
     public float overtime;
     public bool entendu;
-    public bool waitSearch;
-    public bool waitReturn;
     // Use this for initialization
     void Start () {
         lim = 100;
@@ -63,8 +61,6 @@ public class CalculateMove : MonoBehaviour {
         nextToPathB = true;
         CountDown = TimeUntilStopFollow;
         pPuce = GameObject.Find("pPuce");
-        waitSearch=false;
-        waitReturn = false;
         Cleaner();//Rend le programe propre avant démarrage
         foreach (Transform transform in NodeGrid.GetComponentInChildren<Transform>())
         {
@@ -77,6 +73,7 @@ public class CalculateMove : MonoBehaviour {
             lG.Add(0);
             lF.Add(0);
             lH.Add(0);
+
         }
     }
 	
@@ -88,16 +85,7 @@ public class CalculateMove : MonoBehaviour {
         pDirection = pDirection.normalized;
         returnLastNode = DirectionToNode(origine);
         CountDown -= Time.deltaTime;
-        if (pPuce.GetComponentInParent<MoveCaracter>().shift && entendu)
-        {
-            CountDown = TimeUntilStopFollow;
-            if (waitSearch == false)
-            {
-                waitSearch = true;
-            }
-
-        }
-        if (((pPuce.GetComponentInParent<MoveCaracter>().shift&&entendu)||!routining)&&CountDown>0)//Si le joueur est repéré
+        if ((pPuce.GetComponentInParent<MoveCaracter>().shift||!routining)&&CountDown>0)//Si le joueur est repéré
         {
             lastKnownPNode = pPuce.GetComponent<setNode>().noeud;//Sait où se trouve le joueur
         }
@@ -153,24 +141,16 @@ public class CalculateMove : MonoBehaviour {
         else if (!routining&&!pathfind)
         {
             //Renvoie à la routine
-            if (waitReturn == false)
-            {
-                waitReturn = true;
-            }
-            if (waitReturn && this.GetComponent<Wait>().wait <= 0)
-            {
-                lastKnownPNode = null;
-                Debug.Log("c'est ok");
-                onPath = true;
-                following = false;
-                destination = routine[routine.Count - 1];
-                origine = current;
-                this.GetComponent<MoveEnnemi>().direction = new Vector2(0, 0);
-                pathfind = true;
-                Cleaner();
-                goto forcePathfind;
-            }
-            
+            lastKnownPNode = null;
+            Debug.Log("c'est ok");
+            onPath = true;
+            following = false;
+            destination = routine[routine.Count - 1];
+            origine = current;
+            this.GetComponent<MoveEnnemi>().direction = new Vector2(0, 0);
+            pathfind = true;
+            Cleaner();
+            goto forcePathfind;
 
         }
         //Si on a passé trop de temps loin de la routine 
@@ -247,8 +227,6 @@ public class CalculateMove : MonoBehaviour {
         //Code en rapport avec le calcul de routine
         if (routining&&!following )
         {
-            waitReturn = false;
-            waitSearch = false;
             CountDown = TimeUntilStopFollow;
             if (boucleRoutine && firstRoutine) 
             {
@@ -336,6 +314,7 @@ public class CalculateMove : MonoBehaviour {
                 }
             }
         }
+
     }
     //Code qui effectue l'algo A*
     void Pathfinder()
