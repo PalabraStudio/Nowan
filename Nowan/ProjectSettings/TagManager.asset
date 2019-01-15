@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Node
+  - Ennemie
+  - Puce
   layers:
   - Default
   - TransparentFX
@@ -38,6 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 4158102703
+    locked: 0
+  - name: Wall
+    uniqueID: 1190740183
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
