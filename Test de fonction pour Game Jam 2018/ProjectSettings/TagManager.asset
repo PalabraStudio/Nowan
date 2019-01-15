@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - transformable
+  - Ennemi
+  - Node
+  - Puce
+  - mouseHole
+  - pPuce
+  - ennemi
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Flying
+  - Wall
+  - Elevated1
+  - Personnage
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Water
+    uniqueID: 3848465123
+    locked: 0
+  - name: Ground
+    uniqueID: 19494941
+    locked: 0
+  - name: Wall
+    uniqueID: 3492976411
+    locked: 0
+  - name: Personnage
+    uniqueID: 2264202737
+    locked: 0
+  - name: Ellevated1
+    uniqueID: 1739688601
+    locked: 0
+  - name: Flying
+    uniqueID: 1664828207
+    locked: 0
+  - name: UI
+    uniqueID: 2773472823
+    locked: 0
