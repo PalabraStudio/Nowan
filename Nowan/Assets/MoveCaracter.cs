@@ -2,64 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum STATE { BAT, MOUSE, NORMAL};
+public enum STATE { BAT, MOUSE, NORMAL };
 
-public class MoveCaracter : MonoBehaviour {
-    public STATE m_state;
-    public float speed = 1f;
-    private Rigidbody2D rb2d;
-    public bool shift;
-    public float sprint = 2.5f;
-    public float horizontal;
-    public float vertical;
+public class MoveCaracter : MonoBehaviour
+{
+    public float speed;
+    public float sprint;
+    public Rigidbody2D rb2d;
+    private bool m_shift;
+    public bool shift { get { return m_shift; } }
+    private float m_horizontal;
+    public float horizontal { get { return m_horizontal; } }
+    private float m_vertical;
+    public float vertical { get { return m_vertical; } }
 
-    void Start () {
-        rb2d = GetComponent<Rigidbody2D>();
-	}
+    void Start()
+    {
+
+    }
 
     //Les FixedUpdates ne dépendent pas du framerate du pc
     //ce qui permet de rester propre niveau physique peu
     //Importe les performances d'un pc.
     void FixedUpdate()
     {
-        shift = Input.GetKey(KeyCode.LeftShift);
-        horizontal = Input.GetAxis("Horizontal") ;
-        vertical = Input.GetAxis("Vertical") ;
+        m_shift = Input.GetKey(KeyCode.LeftShift);
+        m_horizontal = Input.GetAxis("Horizontal");
+        m_vertical = Input.GetAxis("Vertical");
 
-        if (shift)
+        if (m_shift)
         {
-            horizontal = horizontal * sprint;
-            vertical = vertical * sprint;
+            m_horizontal = m_horizontal * sprint;
+            m_vertical = m_vertical * sprint;
         }
         else
         {
-            horizontal = horizontal * speed;
-            vertical = vertical * speed;
+            m_horizontal = m_horizontal * speed;
+            m_vertical = m_vertical * speed;
         }
-        Vector2 mouvement = new Vector2 (transform.position.x + horizontal,transform.position.y + vertical);
+        Vector2 mouvement = new Vector2(transform.position.x + m_horizontal, transform.position.y + m_vertical);
         rb2d.MovePosition(mouvement);
-    }
-    private void OnCollisionEnter2D(Collider2D collision) //Le ccode ne marche pas, il y a une erreur de syntaxe
-    {
-        if (collision.tag == "mouseHole" && m_state == STATE.MOUSE)
-        {
-            collision.enabled = false;
-        }
-        else if (m_state == STATE.BAT)
-        {
-            collision.enabled = false;
-        }
-    }
-
-    private void OnCollisionExit2D(Collider2D collision)
-    {
-        if (collision.tag == "mouseHole" && m_state == STATE.MOUSE)
-        {
-            collision.enabled = true;
-        }
-        else if (m_state == STATE.BAT)
-        {
-            collision.enabled = true;
-        }
     }
 }
