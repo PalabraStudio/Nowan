@@ -5,7 +5,7 @@ using UnityScript;
 using Unity;
 using Image = UnityEngine.UI.Image;
 
-public class Retour : MonoBehaviour
+public class BoutonInvisibilite : MonoBehaviour
 {
     public bool invisibleTest;
     public bool ready;
