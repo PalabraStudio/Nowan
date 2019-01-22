@@ -46,14 +46,14 @@ public class Copy : MonoBehaviour
         slot1Sprite = slot1.GetComponent<SpriteRenderer>().sprite;
         /* bool z = Input.GetKeyDown("z");
          * comme pour transformable, ce me semble peu utile, autant eviter les allocations memoire quand on peut */
-        if (Input.GetKeyDown("e") && m_image != null && slot1Sprite == null)
-        /* image != null permet d'eviter de colorer le slot en blanc si on appuie sur z en dehors d'un trigger */
+        /*if (Input.GetKeyDown("e") && m_image != null && slot1Sprite == null)
+        /* image != null permet d'eviter de colorer le slot en blanc si on appuie sur z en dehors d'un trigger 
         {
             /* rend.sprite = slot1.GetComponent<UnityEngine.UI.Image>().sprite;
-             * je crois que tu cherchais plutot a faire :  */
+             * je crois que tu cherchais plutot a faire :  
             slot1Sprite = m_image;
 
-        }
+        }*/
         if (Input.GetKeyDown("z") && slot1Sprite != null)
         {
             this.GetComponent<SpriteRenderer>().sprite = slot1Sprite;
