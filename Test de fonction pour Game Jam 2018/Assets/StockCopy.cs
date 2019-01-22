@@ -9,6 +9,7 @@ public class StockCopy : MonoBehaviour {
     public List<GameObject> slots;
     private bool transforming;
 
+
     // Use this for initialization
     void Start () {
         
@@ -23,7 +24,6 @@ public class StockCopy : MonoBehaviour {
         {
             if (copying && image != null && slot.GetComponent<SpriteRenderer>().sprite==null)
             {
-                slot.SetActive(true);
                 slot.GetComponent<SpriteRenderer>().sprite = image;
                 image = null;
             }
@@ -33,7 +33,19 @@ public class StockCopy : MonoBehaviour {
             slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
             slots[1].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite;
             slots[2].GetComponent<SpriteRenderer>().sprite = null;
-        }/*
+        }
+        if(Input.GetAxis("Mouse ScrollWheel") ==1)
+        {
+            slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite != null ? slots[1].GetComponent<SpriteRenderer>().sprite : slots[0].GetComponent<SpriteRenderer>().sprite;
+            slots[1].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite != null ? slots[2].GetComponent<SpriteRenderer>().sprite : slots[1].GetComponent<SpriteRenderer>().sprite;
+            slots[2].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite != null ? slots[0].GetComponent<SpriteRenderer>().sprite : slots[2].GetComponent<SpriteRenderer>().sprite;
+
+
+        }
+        
+        
+        
+        /*
         foreach (GameObject slot in slot)
         {
             if (slot.GetComponent<UnityEngine.UI.Image>().sprite == null)
