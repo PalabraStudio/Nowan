@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StockCopy : MonoBehaviour {
-    private Sprite image;
+    private List<GameObject> prochePerso;
     private bool copying;
     public GameObject Personnage;
     public List<GameObject> slots;
     private bool transforming;
     private Sprite tempSprite;
-
+    private bool unused;
     // Use this for initialization
     void Start () {
         
@@ -17,17 +17,22 @@ public class StockCopy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        image = Personnage.GetComponent<Copy>().image;
-        copying = Input.GetKeyDown("e");
+        prochePerso = Personnage.GetComponent<Copy>().p_prochePerso;
+        copying = Input.GetMouseButtonDown(0);
         transforming = Input.GetKeyDown("z");
-        foreach (GameObject slot in slots)
+        if (copying)
         {
-            if (copying && image != null && slot.GetComponent<SpriteRenderer>().sprite==null)
+            unused = true;
+            foreach (GameObject slot in slots)
             {
-                slot.GetComponent<SpriteRenderer>().sprite = image;
-                image = null;
+                if (prochePerso != new List<GameObject> () && slot.GetComponent<SpriteRenderer>().sprite==null&&unused)
+                {
+                    unused = false;
+                    slot.GetComponent<SpriteRenderer>().sprite = PlusProcheSouris(prochePerso).GetComponent<SpriteRenderer>().sprite;
+                }
             }
         }
+        
         if(transforming && slots[0].GetComponent<SpriteRenderer>().sprite != null)
         {
             slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
@@ -71,8 +76,7 @@ public class StockCopy : MonoBehaviour {
 
             }
         }
-
-
+        
 
         /*
         foreach (GameObject slot in slot)
@@ -83,4 +87,28 @@ public class StockCopy : MonoBehaviour {
             }
         }*/
     }
+    GameObject PlusProcheSouris(List<GameObject> list)
+        {
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 objPos;
+            float minDist;
+            GameObject nearest = list[0];
+            minDist = (mousePos-PosOnScreen(nearest)).magnitude;
+            foreach(GameObject obj in list)
+                {
+                    objPos = PosOnScreen(obj);
+
+                    if (minDist > (objPos - mousePos).magnitude)
+                    {
+                        minDist = (objPos - mousePos).magnitude;
+                        nearest = obj;
+                    }
+                }
+            return nearest;
+        }
+
+    Vector2 PosOnScreen(GameObject obj)
+        {
+            return GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(obj.transform.position);
+        }
 }
