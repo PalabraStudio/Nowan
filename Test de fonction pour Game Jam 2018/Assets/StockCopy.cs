@@ -8,7 +8,7 @@ public class StockCopy : MonoBehaviour {
     public GameObject Personnage;
     public List<GameObject> slots;
     private bool transforming;
-
+    private Sprite tempSprite;
 
     // Use this for initialization
     void Start () {
@@ -34,17 +34,46 @@ public class StockCopy : MonoBehaviour {
             slots[1].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite;
             slots[2].GetComponent<SpriteRenderer>().sprite = null;
         }
-        if(Input.GetAxis("Mouse ScrollWheel") ==1)
+        if(Input.GetAxisRaw("Mouse ScrollWheel")>0)
         {
-            slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite != null ? slots[1].GetComponent<SpriteRenderer>().sprite : slots[0].GetComponent<SpriteRenderer>().sprite;
-            slots[1].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite != null ? slots[2].GetComponent<SpriteRenderer>().sprite : slots[1].GetComponent<SpriteRenderer>().sprite;
-            slots[2].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite != null ? slots[0].GetComponent<SpriteRenderer>().sprite : slots[2].GetComponent<SpriteRenderer>().sprite;
+            Debug.Log("boite");
+            if (slots[2].GetComponent<SpriteRenderer>().sprite != null)
+            {
+                tempSprite = slots[2].GetComponent<SpriteRenderer>().sprite;
+                slots[2].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<SpriteRenderer>().sprite = tempSprite;
 
+            }
+            else if (slots[1].GetComponent<SpriteRenderer>().sprite != null)
+            {
+                tempSprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[0].GetComponent<SpriteRenderer>().sprite = tempSprite;
 
+            }
         }
-        
-        
-        
+        else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
+        {
+            if (slots[2].GetComponent<SpriteRenderer>().sprite != null)
+            {
+                tempSprite = slots[2].GetComponent<SpriteRenderer>().sprite;
+                slots[2].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[0].GetComponent<SpriteRenderer>().sprite = tempSprite;
+
+            }
+            else if (slots[1].GetComponent<SpriteRenderer>().sprite != null)
+            {
+                tempSprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[0].GetComponent<SpriteRenderer>().sprite = tempSprite;
+
+            }
+        }
+
+
+
         /*
         foreach (GameObject slot in slot)
         {
