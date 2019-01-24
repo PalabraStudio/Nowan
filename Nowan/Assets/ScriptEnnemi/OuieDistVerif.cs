@@ -15,7 +15,7 @@ public class OuieDistVerif : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        pPucePosition = GameObject.Find("pPuce").transform.position;
+        pPucePosition = GameObject.Find("Personnage").transform.position;
         ennemiPosition = this.transform.position;
         distance = (pPucePosition - ennemiPosition).magnitude;
         if (distance <= zone)

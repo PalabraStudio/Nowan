@@ -52,6 +52,8 @@ public class CalculateMove : MonoBehaviour {
     public bool nextToPathB;
     public float overtime;
     public bool entendu;
+    public bool waitSearch;
+    public bool waitReturn;
     // Use this for initialization
     void Start () {
         lim = 100;
@@ -61,6 +63,8 @@ public class CalculateMove : MonoBehaviour {
         nextToPathB = true;
         CountDown = TimeUntilStopFollow;
         pPuce = GameObject.Find("pPuce");
+        waitSearch=false;
+        waitReturn = false;
         Cleaner();//Rend le programe propre avant démarrage
         foreach (Transform transform in NodeGrid.GetComponentInChildren<Transform>())
         {
@@ -73,37 +77,51 @@ public class CalculateMove : MonoBehaviour {
             lG.Add(0);
             lF.Add(0);
             lH.Add(0);
-
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //entendu = this.GetComponentInChildren<OuieDistVerif>().entendu;
-        //pDirection = pPuce.transform.position-this.transform.position;
-        //pDirection = pDirection.normalized;
+        //Calculs préliminaires pour des verifications
+        entendu = this.GetComponentInChildren<OuieDistVerif>().entendu;
+        pDirection = DirectionToNode(pPuce);
+        pDirection = pDirection.normalized;
         returnLastNode = DirectionToNode(origine);
         CountDown -= Time.deltaTime;
-        /*if ((pPuce.GetComponentInParent<MoveCaracter>().shift||!routining)&&CountDown>0&&entendu)
+        if (pPuce.GetComponentInParent<MoveCaracter>().shift && entendu)
         {
-            lastKnownPNode = pPuce.GetComponent<setNode>().noeud;
-        }*/
-        if (lastKnownPNode != null&&CountDown>0) { destination = lastKnownPNode; }
-        if (current== lastKnownPNode&&lastKnownPNode==pPuce.GetComponent<setNode>().noeud)
+            CountDown = TimeUntilStopFollow;
+            if (waitSearch == false)
+            {
+                waitSearch = true;
+            }
+
+        }
+        if (((pPuce.GetComponentInParent<MoveCaracter>().shift&&entendu)||!routining)&&CountDown>0)//Si le joueur est repéré
         {
+            lastKnownPNode = pPuce.GetComponent<setNode>().noeud;//Sait où se trouve le joueur
+        }
+        //Tout les codes à partir d'ici jusquà la balise forcepathfind sont pour la poursuite du perso
+        if (lastKnownPNode != null&&CountDown>0) { destination = lastKnownPNode; }//Va chercher le perso
+        if (current== lastKnownPNode&&lastKnownPNode==pPuce.GetComponent<setNode>().noeud)//Si on est à côté du perso
+        {
+            //Suit le perso directement
             CountDown = TimeUntilStopFollow;
             following = true;
             this.GetComponent<MoveEnnemi>().direction = pDirection;
             onPath = false;
             nextToPathB = true;
+            
         }
         else if (CountDown > 0&&!routining)
         {
+            //Si on n'est plus à côté du perso il faut y retourner
             if (!onPath)
             {
+                //Retourne jusqu'à un noeud(chemin sur lequel marche l'ennemi)
                 if (nextToPathB) { nextToPath = lastKnownPNode;nextToPathB = false; }
 
-                            if (DirectionToNode(nextToPath).magnitude > 2)
+                            if (DirectionToNode(nextToPath).magnitude > 1)
                             {
                                 this.GetComponent<MoveEnnemi>().direction = DirectionToNode(nextToPath).normalized;
                             }
@@ -113,9 +131,10 @@ public class CalculateMove : MonoBehaviour {
                                 nextToPathB = true;
                             }
             }
-            
+            //Si on est sur le chemin
             if (onPath&&following)
             {
+                //Fais un Pathfinding jusqu'à la dernière position connue du perso
                 this.GetComponent<MoveEnnemi>().direction = new Vector2 (0,0);
                 following = false;
                 pathfind = true;
@@ -123,29 +142,41 @@ public class CalculateMove : MonoBehaviour {
                 Cleaner();
             }
         }
-        else if (!routining&&CountDown<0 && (returnLastNode.magnitude>2)&&lastKnownPNode!=null)
+        //Si ça fait trop longtemps qu'on est loin du perso
+        else if (!routining&&CountDown<0 && (returnLastNode.magnitude>1)&&lastKnownPNode!=null)
         {
+            //Retourne sur le chemin
             pathfind = false;
             returnLastNode = returnLastNode.normalized;
             this.GetComponent<MoveEnnemi>().direction = returnLastNode;
         }
         else if (!routining&&!pathfind)
         {
-                        lastKnownPNode = null;
-            Debug.Log("c'est ok");
-            onPath = true;
-            following = false;
-            destination = routine[routine.Count - 1];
-            origine = current;
-            this.GetComponent<MoveEnnemi>().direction = new Vector2(0, 0);
-            pathfind = true;
-            Cleaner();
-            goto forcePathfind;
+            //Renvoie à la routine
+            if (waitReturn == false)
+            {
+                waitReturn = true;
+            }
+            if (waitReturn && this.GetComponent<Wait>().wait <= 0)
+            {
+                lastKnownPNode = null;
+                Debug.Log("c'est ok");
+                onPath = true;
+                following = false;
+                destination = routine[routine.Count - 1];
+                origine = current;
+                this.GetComponent<MoveEnnemi>().direction = new Vector2(0, 0);
+                pathfind = true;
+                Cleaner();
+                goto forcePathfind;
+            }
+            
 
         }
-
+        //Si on a passé trop de temps loin de la routine 
         if (CountDown < -overtime)
         {
+            //Téléporte à son point de départ et relance la routine
             onPath = true;
             following = false;
             routining = true;
@@ -156,12 +187,12 @@ public class CalculateMove : MonoBehaviour {
             this.transform.position = routine[routine.Count-1].transform.position;
             current = routine[routine.Count - 1];
             origine = routine[routine.Count - 1];
-            //this.GetComponent<MoveEnnemi>().direction = new Vector2(0, 0);
             CountDown = TimeUntilStopFollow;
             goto forceRoutine;
         }
-        if (destination!=null && routining)
+        if (destination!=null && routining)//Si on a une destination
         {
+            //Lance le Pathfinding
             pathfind = true;
             routining = false;
             origine =path[path.IndexOf(current)-1];
@@ -206,10 +237,18 @@ public class CalculateMove : MonoBehaviour {
             if (current == destination && pathIsFoud&& origine!=destination) { path.Add(destination); Pathdefiner(); Debug.Log("pathdef"); ChangeDirection(); }
 
         }
+        //Si pas de destination, alors on effectue la routine
         if (destination == null) { routining = true; }
+        /* 
+            La ligne de code au dessus ne risque pas de faire bugger le code, car dans tout les cas 
+            la destination n'est pas nulle tant qu'il y a pathfinding ou suivi de l'ennemi
+        */
         forceRoutine:   
+        //Code en rapport avec le calcul de routine
         if (routining&&!following )
         {
+            waitReturn = false;
+            waitSearch = false;
             CountDown = TimeUntilStopFollow;
             if (boucleRoutine && firstRoutine) 
             {
@@ -230,13 +269,16 @@ public class CalculateMove : MonoBehaviour {
                 }
                 foreach (GameObject node in routine)
                 {
-                    vPath[lNoeud.IndexOf(lParent[lNoeud.IndexOf(node)])] =
-                                (node.transform.position - lParent[lNoeud.IndexOf(node)].transform.position).normalized;
+                    directionX = (int)node.transform.position.x - (int)lParent[lNoeud.IndexOf(node)].transform.position.x;
+                    directionY = (int)node.transform.position.y - (int)lParent[lNoeud.IndexOf(node)].transform.position.y;
+                    if (directionX != 0) { directionX = directionX / Mathf.Abs(directionX); }
+                    if (directionY != 0) { directionY = directionY / Mathf.Abs(directionY); }
+                    vPath[lNoeud.IndexOf(lParent[lNoeud.IndexOf(node)])] = new Vector2(directionX, directionY);
                 }              
                 
             }
 
-            else
+            else if (!boucleRoutine)
             {
                 if (current == routine[0] && !firstRoutine)
                 {
@@ -258,8 +300,11 @@ public class CalculateMove : MonoBehaviour {
                     {
                         if (lParent[lNoeud.IndexOf(node)] != null)
                         { 
-                            vPath[lNoeud.IndexOf(lParent[lNoeud.IndexOf(node)])] = 
-                                (node.transform.position- lParent[lNoeud.IndexOf(node)].transform.position).normalized;
+                            directionX = (int)node.transform.position.x - (int)lParent[lNoeud.IndexOf(node)].transform.position.x;
+                            directionY = (int)node.transform.position.y - (int)lParent[lNoeud.IndexOf(node)].transform.position.y;
+                            if (directionX != 0) { directionX = directionX / Mathf.Abs(directionX); }
+                            if (directionY != 0) { directionY = directionY / Mathf.Abs(directionY); }
+                            vPath[lNoeud.IndexOf(lParent[lNoeud.IndexOf(node)])] = new Vector2(directionX, directionY);
                         }
                     }
                 }
@@ -291,7 +336,6 @@ public class CalculateMove : MonoBehaviour {
                 }
             }
         }
-
     }
     //Code qui effectue l'algo A*
     void Pathfinder()
@@ -353,7 +397,7 @@ public class CalculateMove : MonoBehaviour {
         if (current != destination) { Pathfinder(); }
         else { pathIsFoud = true; }
     }
-    //Code qui bidouille les noeuds
+    //Code qui donne une direction à un noeud
     void Pathdefiner()
     {
         vPath[lNoeud.IndexOf(lParent[lNoeud.IndexOf(current)])] =
@@ -363,7 +407,7 @@ public class CalculateMove : MonoBehaviour {
         if (current!= origine) { Pathdefiner(); }
         else { pathIsReady = true; }
     }
-    //Code qui nettoie les objets
+    //Code qui nettoie les listes et variables du code
     void Cleaner()
     {
         Debug.Log("cleaner");
@@ -400,6 +444,7 @@ public class CalculateMove : MonoBehaviour {
     }
     Vector2 DirectionToNode (GameObject node)
     {
+        //Donne la distance entre cet objet et un autre objet
         return node.transform.position - this.transform.position;
     }
 }
