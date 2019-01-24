@@ -533,6 +533,7 @@ GameObject:
   - component: {fileID: 187149445}
   - component: {fileID: 187149444}
   - component: {fileID: 187149443}
+  - component: {fileID: 187149448}
   - component: {fileID: 187149441}
   - component: {fileID: 187149447}
   - component: {fileID: 187149442}
@@ -560,7 +561,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 48, y: 48}
+    oldSize: {x: 10, y: 19}
     newSize: {x: 3.018868, y: 3.018868}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -603,6 +604,7 @@ MonoBehaviour:
   speed: 1.5
   sprint: 2.5
   rb2d: {fileID: 187149444}
+  animator: {fileID: 187149448}
 --- !u!50 &187149444
 Rigidbody2D:
   serializedVersion: 4
@@ -661,7 +663,7 @@ SpriteRenderer:
   m_SortingLayerID: -2030764559
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95666895110383d4fa76208bf0f66ee2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d7b15d5481eca14e8f58f510430674b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -707,6 +709,25 @@ MonoBehaviour:
   i: 0
   normal: {r: 1, g: 1, b: 1, a: 1}
   invisible: {r: 1, g: 1, b: 1, a: 0.5019608}
+--- !u!95 &187149448
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187149440}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b342844b332a3514dbd64224ba3454eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &192520805
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,7 +4882,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 95.84205
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
