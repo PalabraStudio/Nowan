@@ -561,7 +561,7 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
     Build: 1
-    Collab: 1
+    Collab: 0
     ErrorHub: 0
     Hub: 0
     UNet: 1
@@ -586,7 +586,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: 432eb207-3325-4936-a4a1-6f90c06126d8
   framebufferDepthMemorylessMode: 0
-  projectName: "Groupe 4 Ins\xE9rer Nom de Jeu"
+  projectName: Nowan the Unknown Wizard
   organizationId: palabra-studio
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
