@@ -20,9 +20,10 @@ public class CamAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Pour le petit clignottement mignon
         if (time <= 0)
         {
-            time = rangeBlink+ ((Time.time*10)%rangeBlink);
+            time =(int) rangeBlink+ (Random.value*rangeBlink/2);
             blinking = true;
         }
         else if (time != 0 && GetComponent<SpriteRenderer>().sprite == endOfBlink)
@@ -33,7 +34,9 @@ public class CamAnimator : MonoBehaviour
         {
             time -= Time.deltaTime;
         }
-            animator.SetBool("blinking", blinking);
-
+        animator.SetBool("blinking", blinking);
+        //Pour le voyant d'alarme
+        alarm = GetComponent<PersoDetection>().alarm;
+        animator.SetBool("alarm", alarm);
     }
 }
