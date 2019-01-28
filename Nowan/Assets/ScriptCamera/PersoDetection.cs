@@ -19,6 +19,7 @@ public class PersoDetection : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.tag == "Player"&&detection)
         {
             alarm = true;
