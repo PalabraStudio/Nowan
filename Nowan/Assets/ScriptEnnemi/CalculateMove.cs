@@ -88,7 +88,8 @@ public class CalculateMove : MonoBehaviour {
         pDirection = pDirection.normalized;
         returnLastNode = DirectionToNode(origine);
         CountDown -= Time.deltaTime;
-        if (pPuce.GetComponentInParent<MoveCaracter>().shift && entendu)
+        //if (pPuce.GetComponentInParent<MoveCaracter>().shift && entendu)
+        if (destination!=null)
         {
             CountDown = TimeUntilStopFollow;
             if (waitSearch == false)
@@ -97,13 +98,13 @@ public class CalculateMove : MonoBehaviour {
             }
 
         }
-        if (((pPuce.GetComponentInParent<MoveCaracter>().shift&&entendu)||!routining)&&CountDown>0)//Si le joueur est repéré
+        if (((pPuce.GetComponentInParent<MoveCaracter>().shift&&entendu)||(destination==null&&!routining))&&CountDown>0)//Si le joueur est repéré
         {
             lastKnownPNode = pPuce.GetComponent<setNode>().noeud;//Sait où se trouve le joueur
         }
         //Tout les codes à partir d'ici jusquà la balise forcepathfind sont pour la poursuite du perso
         if (lastKnownPNode != null&&CountDown>0) { destination = lastKnownPNode; }//Va chercher le perso
-        if (current== lastKnownPNode&&lastKnownPNode==pPuce.GetComponent<setNode>().noeud)//Si on est à côté du perso
+        if (current== lastKnownPNode && lastKnownPNode==pPuce.GetComponent<setNode>().noeud)//Si on est à côté du perso
         {
             //Suit le perso directement
             CountDown = TimeUntilStopFollow;
@@ -231,7 +232,7 @@ public class CalculateMove : MonoBehaviour {
             //Calcule le chemin si un certain nombre de conditions sont remplies
             if (current == origine && !pathIsFoud && destination != null && listeFermee.Count == 0 && origine != destination && overloop != lim)
             {
-                Pathfinder(); Debug.Log("pathfinder");
+                Pathfinder(); Debug.Log("pathfinder",current);
             }
             //Calcule le chemin, et applique à chaque noeud une direction
             if (current == destination && pathIsFoud&& origine!=destination) { path.Add(destination); Pathdefiner(); Debug.Log("pathdef"); ChangeDirection(); }
