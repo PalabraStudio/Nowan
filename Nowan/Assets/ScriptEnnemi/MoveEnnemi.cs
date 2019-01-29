@@ -9,8 +9,10 @@ public class MoveEnnemi : MonoBehaviour {
     public Vector2 mouvement;
     public bool ismoving;
     public GameObject puce;
+    public int waiter;
     void Start()
     {
+        waiter = 1;
         ismoving = false;
         direction = new Vector2 (0, 0);
         rb2d = GetComponent<Rigidbody2D>();
@@ -23,7 +25,7 @@ public class MoveEnnemi : MonoBehaviour {
         {
             puce.SetActive(false); puce.SetActive(true);
         }
-        Vector2 mouvement = new Vector2(transform.position.x + direction.x*speed, transform.position.y + direction.y*speed);
+        Vector2 mouvement = new Vector2(transform.position.x + direction.x*speed*waiter, transform.position.y + direction.y*speed*waiter);
         rb2d.MovePosition(mouvement);
     }
 }

@@ -6,14 +6,14 @@ public class Copy : MonoBehaviour
 {
     public GameObject slot1;
     private Sprite slot1Sprite;
+    public List<GameObject> prochePerso;
 
     /* private SpriteRenderer rend;
     private string transformable; 
     private bool z; */
 
-    private Sprite m_image;
-    public Sprite image { get { return m_image; } }
-    /* L'image depend du GameObject tranformable dont on touche le trigger
+    public List<GameObject> p_prochePerso { get { return prochePerso; } }
+    /* L'image depend du GameObject tra1nformable dont on touche le trigger
      * donc cette variable ne doit pas pouvoir être Set en dehors.
      * Par contre, on veut y avoir acces dans StockCopy, donc il faut un getter public. */
 
@@ -31,12 +31,14 @@ public class Copy : MonoBehaviour
          * il me semble que la variable est peu utile, on pourrait s'en passer */
         if (collision.tag == "transformable")
         {
-            m_image = collision.GetComponent<SpriteRenderer>().sprite;
+            //m_image = collision.GetComponent<SpriteRenderer>().sprite;
+            prochePerso.Add(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        m_image = null;
+        //m_image = null;
+        prochePerso.Remove(collision.gameObject);
     }
 
     //Si on a qqch dans image et que on appuie sur e 
