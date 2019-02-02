@@ -47,6 +47,15 @@ TagManager:
   - name: Wall
     uniqueID: 1190740183
     locked: 0
+  - name: Objets
+    uniqueID: 4024450883
+    locked: 0
+  - name: Perso
+    uniqueID: 3214510135
+    locked: 0
+  - name: Camera
+    uniqueID: 933844049
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
