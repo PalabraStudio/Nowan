@@ -11,6 +11,7 @@ public class StockCopy : MonoBehaviour {
     private Sprite tempSprite;
     private int temp;
     private bool unused;
+    
     // Use this for initialization
     void Start () {
         
@@ -107,6 +108,7 @@ public class StockCopy : MonoBehaviour {
             }
         }*/
     }
+
     GameObject PlusProcheSouris(List<GameObject> list)
         {
             Vector2 mousePos = Input.mousePosition;

@@ -7,6 +7,8 @@ public class Copy : MonoBehaviour
     public GameObject slot1;
     private Sprite slot1Sprite;
     public List<GameObject> prochePerso;
+    public float secondsToWait = 10;
+	public float secondsLeft = 10;
 
     /* private SpriteRenderer rend;
     private string transformable; 
@@ -58,11 +60,20 @@ public class Copy : MonoBehaviour
         }*/
         if (Input.GetMouseButtonDown(1) && slot1Sprite != null)
         {
-            this.GetComponent<SpriteRenderer>().sprite = slot1Sprite;
-            updateMoveCharacter(this.GetComponent<MoveCaracter>(), slot1Sprite.name);
+            secondsLeft = secondsToWait;
         }
     }
     
+    void FixedUpdate () {
+        if (this.GetComponent<Animator>().GetInteger("State") != 0){
+            secondsLeft -= Time.fixedDeltaTime;
+            if (secondsLeft <= 0){
+                this.GetComponent<Animator>().SetInteger("State", 0);
+                secondsLeft = secondsToWait;
+            }
+        }
+	}
+
     void updateMoveCharacter(MoveCaracter move, string spriteName)
     {
         this.GetComponent<CircleCollider2D>().isTrigger = spriteName.Contains("bat");
