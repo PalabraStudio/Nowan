@@ -56,7 +56,7 @@ public class Copy : MonoBehaviour
             slot1Sprite = m_image;
 
         }*/
-        if (Input.GetKeyDown("z") && slot1Sprite != null)
+        if (Input.GetMouseButtonDown(1) && slot1Sprite != null)
         {
             this.GetComponent<SpriteRenderer>().sprite = slot1Sprite;
             updateMoveCharacter(this.GetComponent<MoveCaracter>(), slot1Sprite.name);
