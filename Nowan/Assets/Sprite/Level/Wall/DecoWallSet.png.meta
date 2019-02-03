@@ -1,17 +1,19 @@
 fileFormatVersion: 2
-guid: 1e02667da660abd4bb0e024ab101934f
+guid: f8b6132eb85875d42a4dfc01d0e72a81
 TextureImporter:
   fileIDToRecycleName:
-    21300000: WallSet_0
-    21300002: WallSet_1
-    21300004: WallSet_2
-    21300006: WallSet_3
-    21300008: WallSet_4
-    21300010: WallSet_5
-    21300012: WallSet_6
-    21300014: WallSet_7
-    21300016: WallSet_8
-    21300018: WallSet_9
+    21300000: DecoWallSet_0
+    21300002: DecoWallSet_1
+    21300004: DecoWallSet_2
+    21300006: DecoWallSet_3
+    21300008: DecoWallSet_4
+    21300010: DecoWallSet_5
+    21300012: DecoWallSet_6
+    21300014: DecoWallSet_7
+    21300016: DecoWallSet_8
+    21300018: DecoWallSet_9
+    21300020: DecoWallSet_10
+    21300022: DecoWallSet_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -70,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -81,10 +83,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,47 +96,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WallSet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4a2f442c92a1324a8fdc6f5b3c6abc2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSet_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eddb81e5de93b8142a0c8cb8a10a2a48
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSet_2
+      name: DecoWallSet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,13 +110,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1931c13229868964187aee7015f60367
+      spriteID: aed58a4b07196af4aabf6105b7ab95ff
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_3
+      name: DecoWallSet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -168,13 +130,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4db8d6159bdac034f892f0b2b821ba1e
+      spriteID: 3a9e4b5a5ff9043459a109489360604b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_4
+      name: DecoWallSet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd74254f886fb14583b740401080a91
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DecoWallSet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -188,13 +170,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b39df005cff02484a8d1f60b5bff9061
+      spriteID: 496650fb417ed8f43afc6574c341bb59
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_5
+      name: DecoWallSet_4
       rect:
         serializedVersion: 2
         x: 32
@@ -208,13 +190,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 506c299be5d4fbb42b37bba26f1bee5c
+      spriteID: 468eac158ba428b45a02dd4aea142bfb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_6
+      name: DecoWallSet_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad249805168f64d4db91c5ab690b475e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DecoWallSet_6
       rect:
         serializedVersion: 2
         x: 0
@@ -228,13 +230,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86422bfbe4e89d5488dc27d937a2c2f0
+      spriteID: cd56e501f7435a342b5615085c04e66b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_7
+      name: DecoWallSet_7
       rect:
         serializedVersion: 2
         x: 32
@@ -248,13 +250,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31db91c24c326f34cab028ea08114378
+      spriteID: 77835a8884410324491d1ef5a9582930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_8
+      name: DecoWallSet_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf65af8dc9930445a90a77cbf7d0510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DecoWallSet_9
       rect:
         serializedVersion: 2
         x: 0
@@ -268,13 +290,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fce99fbc7595dd5448ba0b6b58979d2c
+      spriteID: a776b87b84f419b408bf3f9ced4ecac8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSet_9
+      name: DecoWallSet_10
       rect:
         serializedVersion: 2
         x: 32
@@ -288,7 +310,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55a323909b0f69f43ad5656acd8607aa
+      spriteID: 81de25dfa57743445b77f67fc5f6b2b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DecoWallSet_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7300d914be970c1448bd3b727aafad21
       vertices: []
       indices: 
       edges: []
@@ -296,7 +338,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 312b374eeffdc1945af1342e7c8e2c1a
+    spriteID: e2535cc27fed1de4c9e72fd92a3322ad
     vertices: []
     indices: 
     edges: []

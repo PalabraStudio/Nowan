@@ -53,6 +53,9 @@ TagManager:
   - name: Perso
     uniqueID: 3214510135
     locked: 0
+  - name: Roof
+    uniqueID: 1608492607
+    locked: 0
   - name: Camera
     uniqueID: 933844049
     locked: 0
