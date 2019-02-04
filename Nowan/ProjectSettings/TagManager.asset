@@ -10,6 +10,7 @@ TagManager:
   - PowerButtonGUI
   - PowerGUI
   - GUI
+  - Transformable
   layers:
   - Default
   - TransparentFX
