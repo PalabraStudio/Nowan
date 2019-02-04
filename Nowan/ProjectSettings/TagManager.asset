@@ -9,6 +9,7 @@ TagManager:
   - Puce
   - PowerButtonGUI
   - PowerGUI
+  - GUI
   layers:
   - Default
   - TransparentFX

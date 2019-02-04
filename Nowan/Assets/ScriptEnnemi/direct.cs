@@ -36,6 +36,7 @@ public class direct : MonoBehaviour {
                 {
                     this.GetComponentInParent<MoveEnnemi>().direction = lPath[lNoeud.IndexOf(collision.gameObject)];
                     this.GetComponentInParent<CalculateMove>().current = collision.gameObject;
+                    this.GetComponentInParent<CalculateMove>().origine = collision.gameObject;
 
                 }
                 if (path[0].name == collision.name && !this.GetComponentInParent<CalculateMove>().routining)

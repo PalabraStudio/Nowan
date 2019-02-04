@@ -31,7 +31,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: lifemax
-    value: 10
+    value: 4
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: timeOfBlank
@@ -68,4 +68,8 @@ Preset:
   - target: {fileID: 0}
     propertyPath: hit.a
     value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: montre
+    value: 
     objectReference: {fileID: 0}

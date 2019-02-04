@@ -12,18 +12,20 @@ public class Life : MonoBehaviour
     private float timer;
     public Color classic;
     public Color hit;
+    public GameObject montre;
     // Start is called before the first frame update
     void Start()
     {
         classic = GetComponent<SpriteRenderer>().color;
         life = lifemax;
         lifetamp = life;
+        montre = GameObject.Find("Montre");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        montre.GetComponent<Animator>().SetInteger("PV", life);
         if (life == 0)
         {
             SceneManager.LoadScene("GameOver");

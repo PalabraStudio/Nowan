@@ -13,14 +13,6 @@ PresetManager:
         type: 2}
   - type:
       m_NativeTypeID: 114
-      m_ManagedTypePPtr: {fileID: 11500000, guid: ac712a3aa6baeab46ad6b9d94bbc9b27,
-        type: 3}
-      m_ManagedTypeFallback: 
-    defaultPresets:
-    - m_Preset: {fileID: 2655988077585873504, guid: 49d506a61a2890f44b37d0a6ab73df67,
-        type: 2}
-  - type:
-      m_NativeTypeID: 114
       m_ManagedTypePPtr: {fileID: 11500000, guid: 519e7d12809d0a3448b1de7b71ee428c,
         type: 3}
       m_ManagedTypeFallback: 
@@ -34,4 +26,12 @@ PresetManager:
       m_ManagedTypeFallback: 
     defaultPresets:
     - m_Preset: {fileID: 2655988077585873504, guid: 18c1e4799e765774689c3866ba7ef109,
+        type: 2}
+  - type:
+      m_NativeTypeID: 114
+      m_ManagedTypePPtr: {fileID: 11500000, guid: ac712a3aa6baeab46ad6b9d94bbc9b27,
+        type: 3}
+      m_ManagedTypeFallback: 
+    defaultPresets:
+    - m_Preset: {fileID: 2655988077585873504, guid: 49d506a61a2890f44b37d0a6ab73df67,
         type: 2}
