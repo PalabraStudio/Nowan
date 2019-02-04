@@ -16,6 +16,7 @@ public class MoveEnnemi : MonoBehaviour {
         ismoving = false;
         direction = new Vector2 (0, 0);
         rb2d = GetComponent<Rigidbody2D>();
+        puce = this.transform.Find("Puce").gameObject;
     }
 
 	
