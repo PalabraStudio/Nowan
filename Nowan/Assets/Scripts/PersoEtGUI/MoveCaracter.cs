@@ -9,6 +9,7 @@ public class MoveCaracter : MonoBehaviour
     public float speed;
     public float sprint;
     public Rigidbody2D rb2d;
+    public Animator animator;
     private bool m_shift;
     public bool shift { get { return m_shift; } }
     private float m_horizontal;
@@ -29,6 +30,11 @@ public class MoveCaracter : MonoBehaviour
         m_shift = Input.GetKey(KeyCode.LeftShift);
         m_horizontal = Input.GetAxis("Horizontal");
         m_vertical = Input.GetAxis("Vertical");
+
+        animator.SetBool("Up", (m_vertical>0) && (m_horizontal==0));
+        animator.SetBool("Down", (m_vertical<0) && (m_horizontal == 0));
+        animator.SetBool("Left", m_horizontal<0);
+        animator.SetBool("Right", m_horizontal>0);
 
         if (m_shift)
         {
