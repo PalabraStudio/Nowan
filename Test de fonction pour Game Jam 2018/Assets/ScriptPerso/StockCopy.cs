@@ -9,7 +9,9 @@ public class StockCopy : MonoBehaviour {
     public List<GameObject> slots;
     private bool transforming;
     private Sprite tempSprite;
+    private int temp;
     private bool unused;
+    
     // Use this for initialization
     void Start () {
         
@@ -19,7 +21,8 @@ public class StockCopy : MonoBehaviour {
 	void Update () {
         prochePerso = Personnage.GetComponent<Copy>().p_prochePerso;
         copying = Input.GetMouseButtonDown(0);
-        transforming = Input.GetKeyDown("z");
+        //transforming = Input.GetKeyDown("z");
+        transforming = Input.GetMouseButtonDown(1);
         if (copying)
         {
             unused = true;
@@ -29,15 +32,20 @@ public class StockCopy : MonoBehaviour {
                 {
                     unused = false;
                     slot.GetComponent<SpriteRenderer>().sprite = PlusProcheSouris(prochePerso).GetComponent<SpriteRenderer>().sprite;
+                    slot.GetComponent<TransformableID>().ID = PlusProcheSouris(prochePerso).GetComponent<Transformable>().ID;
                 }
             }
         }
         
         if(transforming && slots[0].GetComponent<SpriteRenderer>().sprite != null)
         {
+            Personnage.GetComponent<Animator>().SetInteger("State", slots[0].GetComponent<TransformableID>().ID);
             slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+            slots[0].GetComponent<TransformableID>().ID = slots[1].GetComponent<TransformableID>().ID;
             slots[1].GetComponent<SpriteRenderer>().sprite = slots[2].GetComponent<SpriteRenderer>().sprite;
+            slots[1].GetComponent<TransformableID>().ID = slots[2].GetComponent<TransformableID>().ID;
             slots[2].GetComponent<SpriteRenderer>().sprite = null;
+            slots[2].GetComponent<TransformableID>().ID = 0;
         }
         if(Input.GetAxisRaw("Mouse ScrollWheel")>0)
         {
@@ -45,16 +53,23 @@ public class StockCopy : MonoBehaviour {
             if (slots[2].GetComponent<SpriteRenderer>().sprite != null)
             {
                 tempSprite = slots[2].GetComponent<SpriteRenderer>().sprite;
+                temp = slots[2].GetComponent<TransformableID>().ID;
                 slots[2].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[2].GetComponent<TransformableID>().ID = slots[0].GetComponent<TransformableID>().ID;
                 slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                slots[0].GetComponent<TransformableID>().ID = slots[1].GetComponent<TransformableID>().ID;
                 slots[1].GetComponent<SpriteRenderer>().sprite = tempSprite;
+                slots[1].GetComponent<TransformableID>().ID = temp;
 
             }
             else if (slots[1].GetComponent<SpriteRenderer>().sprite != null)
             {
                 tempSprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                temp = slots[1].GetComponent<TransformableID>().ID;
                 slots[1].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<TransformableID>().ID = slots[1].GetComponent<TransformableID>().ID;
                 slots[0].GetComponent<SpriteRenderer>().sprite = tempSprite;
+                slots[0].GetComponent<TransformableID>().ID = temp;
 
             }
         }
@@ -63,17 +78,23 @@ public class StockCopy : MonoBehaviour {
             if (slots[2].GetComponent<SpriteRenderer>().sprite != null)
             {
                 tempSprite = slots[2].GetComponent<SpriteRenderer>().sprite;
+                temp = slots[2].GetComponent<TransformableID>().ID;
                 slots[2].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                slots[2].GetComponent<TransformableID>().ID = slots[1].GetComponent<TransformableID>().ID;
                 slots[1].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<TransformableID>().ID = slots[0].GetComponent<TransformableID>().ID;
                 slots[0].GetComponent<SpriteRenderer>().sprite = tempSprite;
+                slots[0].GetComponent<TransformableID>().ID = temp;
 
             }
             else if (slots[1].GetComponent<SpriteRenderer>().sprite != null)
             {
                 tempSprite = slots[1].GetComponent<SpriteRenderer>().sprite;
+                temp = slots[1].GetComponent<TransformableID>().ID;
                 slots[1].GetComponent<SpriteRenderer>().sprite = slots[0].GetComponent<SpriteRenderer>().sprite;
+                slots[1].GetComponent<TransformableID>().ID = slots[0].GetComponent<TransformableID>().ID;
                 slots[0].GetComponent<SpriteRenderer>().sprite = tempSprite;
-
+                slots[0].GetComponent<TransformableID>().ID = temp;
             }
         }
         
@@ -87,6 +108,7 @@ public class StockCopy : MonoBehaviour {
             }
         }*/
     }
+
     GameObject PlusProcheSouris(List<GameObject> list)
         {
             Vector2 mousePos = Input.mousePosition;
