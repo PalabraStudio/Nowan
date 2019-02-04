@@ -7,6 +7,8 @@ TagManager:
   - Node
   - Ennemie
   - Puce
+  - PowerButtonGUI
+  - PowerGUI
   layers:
   - Default
   - TransparentFX
