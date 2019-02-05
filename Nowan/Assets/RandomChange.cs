@@ -15,7 +15,7 @@ public class RandomChange : MonoBehaviour
     void Update()
     {
         randomNum = Random.Range(0, 100);
-        if (randomNum > 90)
+        if (randomNum > 95)
         {
             this.GetComponent<Animator>().SetBool("Change", !this.GetComponent<Animator>().GetBool("Change"));
         }
