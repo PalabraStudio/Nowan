@@ -19,9 +19,8 @@ public class StockCopy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        prochePerso = Personnage.GetComponent<Copy>().p_prochePerso;
+        prochePerso = Personnage.GetComponent<Copy>().prochePerso;
         copying = Input.GetMouseButtonDown(0);
-        //transforming = Input.GetKeyDown("z");
         transforming = Input.GetMouseButtonDown(1);
         if (copying)
         {
