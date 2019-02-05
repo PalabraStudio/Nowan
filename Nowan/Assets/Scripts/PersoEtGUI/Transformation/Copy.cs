@@ -10,11 +10,6 @@ public class Copy : MonoBehaviour
     public float secondsToWait = 10;
 	public float secondsLeft = 10;
 
-    public List<GameObject> p_prochePerso { get { return prochePerso; } }
-    /* L'image depend du GameObject tra1nformable dont on touche le trigger
-     * donc cette variable ne doit pas pouvoir être Set en dehors.
-     * Par contre, on veut y avoir acces dans StockCopy, donc il faut un getter public. */
-
 
     void Start()
     {
