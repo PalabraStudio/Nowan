@@ -6,6 +6,7 @@ public class PauseGame : MonoBehaviour
 {
     public bool paused;
     public GameObject panel;
+    public List<GameObject> stop;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +19,23 @@ public class PauseGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)&&!paused)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             panel.SetActive(true);
+            foreach(GameObject obj in stop)
+            {
+                obj.SetActive(false);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Escape) && paused)
         {
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
             panel.SetActive(false);
+            foreach (GameObject obj in stop)
+            {
+                obj.SetActive(true);
+            }
         }
-        paused = Time.timeScale == 1 ? false : true;
+        //paused = Time.timeScale == 1 ? false : true;
+        paused = panel.active;
     }
 }
