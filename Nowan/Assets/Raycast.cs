@@ -34,9 +34,9 @@ public class Raycast : MonoBehaviour
         //Debug.Log(ray_direction.x);
         //Debug.Log(ray_direction.y);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, ray_direction, detection_distance, LayerMask.NameToLayer("Default"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, ray_direction, detection_distance);
         //Debug.Log(hit.transform.gameObject.name);
-        if (hit.transform.gameObject.name=="Personnage")
+        if (hit&&(hit.transform.gameObject.name=="Personnage"|| hit.transform.gameObject.name == "Visu"))
         {
             Debug.Log(hit.transform.gameObject.name);
             Debug.DrawLine(transform.position, new Vector2(ray_direction.x * detection_distance + transform.position.x, ray_direction.y * detection_distance + transform.position.y), Color.blue);
