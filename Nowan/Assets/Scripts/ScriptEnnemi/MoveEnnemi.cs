@@ -34,7 +34,7 @@ public class MoveEnnemi : MonoBehaviour {
         Vector2 mouvement = new Vector2(transform.position.x + direction.x*speed*waiter, transform.position.y + direction.y*speed*waiter);
         rb2d.MovePosition(mouvement);
 
-        Debug.Log(direction.x);
+        //Debug.Log(direction.x);
         up = (direction.y > 0) && (direction.x == 0);
         down = (direction.y < 0) && (direction.x == 0);
         left = direction.x < 0;
