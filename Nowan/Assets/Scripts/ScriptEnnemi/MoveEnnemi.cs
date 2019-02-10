@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveEnnemi : MonoBehaviour {
+
+
+    public bool up, down, left, right;
+
+    public Animator animator;
     public float speed = 1f;
     private Rigidbody2D rb2d;
     public Vector2 direction;
@@ -28,5 +33,16 @@ public class MoveEnnemi : MonoBehaviour {
         }
         Vector2 mouvement = new Vector2(transform.position.x + direction.x*speed*waiter, transform.position.y + direction.y*speed*waiter);
         rb2d.MovePosition(mouvement);
+
+        Debug.Log(direction.x);
+        up = (direction.y > 0) && (direction.x == 0);
+        down = (direction.y < 0) && (direction.x == 0);
+        left = direction.x < 0;
+        right = direction.x > 0;
+        animator.SetBool("Up", up);
+        animator.SetBool("Down", down);
+        animator.SetBool("Left", left);
+        animator.SetBool("Right", right);
+
     }
 }
