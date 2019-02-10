@@ -12,7 +12,11 @@ public class DesactivateOnWalk : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        this.GetComponent<DialogTrigger>().TriggerDialog();
-        this.gameObject.SetActive(false);
+        if (collision.name == "Personnage")
+        {
+            this.GetComponent<DialogTrigger>().TriggerDialog();
+            this.gameObject.SetActive(false);
+        }
+       
     }
 }
