@@ -22,12 +22,28 @@ public class StunEnnemy : MonoBehaviour
         if (GetComponent<TelCallEnnemy>().miniEnnemi != null)
         {
             stunTarget = GetComponent<TelCallEnnemy>().miniEnnemi;
+            stunTarget.GetComponent<CalculateMove>().destination = node;
         }
-        if (stunTarget.GetComponent<CalculateMove>().origine == node)
+        if (stunTarget != null && stunTarget.GetComponent<CalculateMove>().origine == node && timer<=0 )
         {
+            stun = true;
+            timer = stunTime;
+            this.GetComponent<TelCallEnnemy>().activation = false;
+            this.GetComponent<TelCallEnnemy>().ring = false;
+        }
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        if (stunTarget!=null&&stun&& timer <= 0)
+        {
+            stun = false;
+            stunTarget.GetComponent<CalculateMove>().destination = stunTarget.GetComponent<CalculateMove>().routine[0];
+            Debug.Log("ok");
+            stunTarget = null;
+            GetComponent<TelCallEnnemy>().miniEnnemi = null;
 
         }
-
 
     }
 
