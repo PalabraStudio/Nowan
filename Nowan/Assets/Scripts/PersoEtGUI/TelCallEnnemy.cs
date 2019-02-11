@@ -11,18 +11,29 @@ public class TelCallEnnemy : MonoBehaviour
     private bool first;
     public bool ring;
     public bool activation;
+    private GameObject perso;
+    public GameObject power;
+    public GameObject boutton;
     // Start is called before the first frame update
     void Start()
     {
-        ennemiList = GameObject.FindGameObjectsWithTag("Ennemie");
+        ennemiList = GameObject.FindGameObjectsWithTag("Ennemi");
         first = true;
         ring = false;
         activation = false;
+        perso = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (perso.transform.position - this.transform.position).magnitude <= 200&&boutton.GetComponent<Animator>().GetBool("TelReady"))
+        {
+            boutton.GetComponent<Animator>().SetBool("TelReady", false);
+            power.GetComponent<Animator>().SetBool("Tel", false);
+
+               activation = true;
+        }
         if (activation && first)
         {
             first = false;
