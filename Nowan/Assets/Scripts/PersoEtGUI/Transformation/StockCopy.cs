@@ -11,7 +11,7 @@ public class StockCopy : MonoBehaviour {
     private Sprite tempSprite;
     private int temp;
     private bool unused;
-    
+    public AudioClip transformationClip;
     // Use this for initialization
     void Start () {
         
@@ -45,6 +45,7 @@ public class StockCopy : MonoBehaviour {
             slots[1].GetComponent<TransformableID>().ID = slots[2].GetComponent<TransformableID>().ID;
             slots[2].GetComponent<SpriteRenderer>().sprite = null;
             slots[2].GetComponent<TransformableID>().ID = 0;
+            AudioManager.instance.PlaySound(transformationClip);
         }
         if(Input.GetAxisRaw("Mouse ScrollWheel")>0)
         {

@@ -16,7 +16,6 @@ public class MoveCaracter : MonoBehaviour
     public float horizontal { get { return m_horizontal; } }
     private float m_vertical;
     public float vertical { get { return m_vertical; } }
-
     void Start()
     {
 
@@ -31,10 +30,10 @@ public class MoveCaracter : MonoBehaviour
         m_horizontal = Input.GetAxis("Horizontal");
         m_vertical = Input.GetAxis("Vertical");
 
-        animator.SetBool("Up", (m_vertical>0) && (m_horizontal==0));
-        animator.SetBool("Down", (m_vertical<0) && (m_horizontal == 0));
-        animator.SetBool("Left", m_horizontal<0);
-        animator.SetBool("Right", m_horizontal>0);
+        animator.SetBool("Up", (m_vertical > 0) && (m_horizontal == 0));
+        animator.SetBool("Down", (m_vertical < 0) && (m_horizontal == 0));
+        animator.SetBool("Left", m_horizontal < 0);
+        animator.SetBool("Right", m_horizontal > 0);
 
         if (m_shift)
         {
@@ -48,5 +47,7 @@ public class MoveCaracter : MonoBehaviour
         }
         Vector2 mouvement = new Vector2(transform.position.x + m_horizontal, transform.position.y + m_vertical);
         rb2d.MovePosition(mouvement);
+       
     }
 }
+
