@@ -24,12 +24,12 @@ public class StunEnnemi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inRange= InRange(personnage, stunRange);
+       /* inRange= InRange(personnage, stunRange);
         //if (perso.stun && !stun && InRange(personnage, stunRange))
         {
             stun = true;
         }
-        //if (!perso.stun && stun)
+        /*if (!perso.stun && stun)
         {
             stun = false;
             GetComponent<MoveEnnemi>().waiter = 1;
@@ -41,7 +41,7 @@ public class StunEnnemi : MonoBehaviour
         {
             GetComponent<MoveEnnemi>().waiter = 0;
             calcMov.enabled = false;
-        }
+        }*/
     }
     bool InRange(GameObject personnage,float range)
     {

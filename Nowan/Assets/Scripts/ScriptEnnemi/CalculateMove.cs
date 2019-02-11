@@ -54,6 +54,7 @@ public class CalculateMove : MonoBehaviour {
     public bool entendu;
     public bool waitSearch;
     public bool waitReturn;
+    private bool repere;
     // Use this for initialization
     void Start () {
         lim = 100;
@@ -82,6 +83,7 @@ public class CalculateMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        repere = GetComponentInChildren<Raycast>().repere;
         //Calculs préliminaires pour des verifications
         entendu = this.GetComponentInChildren<OuieDistVerif>().entendu;
         pDirection = DirectionToNode(pPuce);
@@ -89,7 +91,7 @@ public class CalculateMove : MonoBehaviour {
         returnLastNode = DirectionToNode(origine);
         CountDown -= Time.deltaTime;
         //if (pPuce.GetComponentInParent<MoveCaracter>().shift && entendu)
-        if (destination!=null)
+        /*if (destination!=null)
         {
             CountDown = TimeUntilStopFollow;
             if (waitSearch == false)
@@ -97,14 +99,15 @@ public class CalculateMove : MonoBehaviour {
                 waitSearch = true;
             }
 
-        }
-        if (((pPuce.GetComponentInParent<MoveCaracter>().shift&&entendu)||(destination==null&&!routining))&&CountDown>0)//Si le joueur est repéré
+        }*/
+        if (((pPuce.GetComponentInParent<MoveCaracter>().shift&&entendu)||(destination==null&&!routining)||repere)&&CountDown>0)//Si le joueur est repéré
         {
             lastKnownPNode = pPuce.GetComponent<setNode>().noeud;//Sait où se trouve le joueur
         }
         //Tout les codes à partir d'ici jusquà la balise forcepathfind sont pour la poursuite du perso
         if (lastKnownPNode != null&&CountDown>0) { destination = lastKnownPNode; }//Va chercher le perso
-        if (current== lastKnownPNode && lastKnownPNode==pPuce.GetComponent<setNode>().noeud)//Si on est à côté du perso
+        rebloucle:
+        if (repere||(current== lastKnownPNode && lastKnownPNode==pPuce.GetComponent<setNode>().noeud))//Si on est à côté du perso
         {
             //Suit le perso directement
             CountDown = TimeUntilStopFollow;
@@ -112,7 +115,7 @@ public class CalculateMove : MonoBehaviour {
             this.GetComponent<MoveEnnemi>().direction = pDirection;
             onPath = false;
             nextToPathB = true;
-            
+
         }
         else if (CountDown > 0&&!routining)
         {
@@ -120,17 +123,17 @@ public class CalculateMove : MonoBehaviour {
             if (!onPath)
             {
                 //Retourne jusqu'à un noeud(chemin sur lequel marche l'ennemi)
-                if (nextToPathB) { nextToPath = lastKnownPNode;nextToPathB = false; }
+                if (nextToPathB) { nextToPath = lastKnownPNode; nextToPathB = false; lastKnownPNode = pPuce.GetComponent<setNode>().noeud; }
 
-                            if (DirectionToNode(nextToPath).magnitude > 1)
-                            {
-                                this.GetComponent<MoveEnnemi>().direction = DirectionToNode(nextToPath).normalized;
-                            }
-                            else
-                            {
-                                onPath = true;
-                                nextToPathB = true;
-                            }
+                if (DirectionToNode(nextToPath).magnitude > 1)
+                {
+                    this.GetComponent<MoveEnnemi>().direction = DirectionToNode(nextToPath).normalized;
+                }
+                else
+                {
+                    onPath = true;
+                    nextToPathB = true;
+                }
             }
             //Si on est sur le chemin
             if (onPath&&following)
@@ -139,7 +142,16 @@ public class CalculateMove : MonoBehaviour {
                 this.GetComponent<MoveEnnemi>().direction = new Vector2 (0,0);
                 following = false;
                 pathfind = true;
-                destination = lastKnownPNode;
+                if (current == lastKnownPNode)
+                {
+                    goto rebloucle;
+                }
+                else
+                {
+                    destination = lastKnownPNode;
+                }
+               
+
                 Cleaner();
             }
         }
