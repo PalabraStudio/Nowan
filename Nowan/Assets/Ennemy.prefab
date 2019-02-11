@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detection_distance: 100
+  dup: 0
+  ddown: 0
+  dleft: 0
+  dright: 0
   vu: 0
   to: 1
 --- !u!1 &6212981358403065239
@@ -182,6 +186,7 @@ GameObject:
   - component: {fileID: 6212981358649131783}
   - component: {fileID: 6212981358649131780}
   - component: {fileID: 6212981358649131781}
+  - component: {fileID: 7840484558901966859}
   - component: {fileID: 6212981358649131782}
   - component: {fileID: 6212981358649131776}
   - component: {fileID: 6212981358649131778}
@@ -283,6 +288,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7840484558901966859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212981358649131777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac712a3aa6baeab46ad6b9d94bbc9b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeForHit: 1
+  distance: 20
 --- !u!114 &6212981358649131782
 MonoBehaviour:
   m_ObjectHideFlags: 0

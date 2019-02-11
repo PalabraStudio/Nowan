@@ -6,7 +6,7 @@ public class Raycast : MonoBehaviour
 {
 
     public float detection_distance;
-    float dup, ddown, dleft, dright;
+    public float dup, ddown, dleft, dright;
     public bool repere { get { return vu; } }
     public bool vu;
     private float[] variationsCos;
@@ -28,11 +28,17 @@ public class Raycast : MonoBehaviour
     {
 
         Vector2 posEnemy = GetComponentInParent<Transform>().position;
-
-        if (GetComponentInParent<MoveEnnemi>().up == true) { dup = 1f; } else { dup = 0f; }
-        if (GetComponentInParent<MoveEnnemi>().down == true) { ddown = 1f; } else { ddown = 0f; }
-        if (GetComponentInParent<MoveEnnemi>().left == true) { dleft = 1f; } else { dleft = 0f; }
-        if (GetComponentInParent<MoveEnnemi>().right == true) { dright = 1f; } else { dright = 0f; }
+        if(GetComponentInParent<MoveEnnemi>().up == true  ||
+           GetComponentInParent<MoveEnnemi>().down == true||
+           GetComponentInParent<MoveEnnemi>().left == true||
+           GetComponentInParent<MoveEnnemi>().right == true)
+        {
+            if (GetComponentInParent<MoveEnnemi>().up == true) { dup = 1f; } else { dup = 0f; }
+            if (GetComponentInParent<MoveEnnemi>().down == true) { ddown = 1f; } else { ddown = 0f; }
+            if (GetComponentInParent<MoveEnnemi>().left == true) { dleft = 1f; } else { dleft = 0f; }
+            if (GetComponentInParent<MoveEnnemi>().right == true) { dright = 1f; } else { dright = 0f; }
+        }
+        
 
 
 

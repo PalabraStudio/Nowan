@@ -12,7 +12,7 @@ public class CallEnnemi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ennemiList = GameObject.FindGameObjectsWithTag("Ennemie");
+        ennemiList = GameObject.FindGameObjectsWithTag("Ennemi");
         first = true;
     }
 
