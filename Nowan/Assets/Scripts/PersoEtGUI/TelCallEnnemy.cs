@@ -27,7 +27,8 @@ public class TelCallEnnemy : MonoBehaviour
         {
             first = false;
             ring = true;
-            miniDist = Distance(ennemiList[1]);
+
+                    miniDist = Distance(ennemiList[1]);
             miniEnnemi = ennemiList[1];
             foreach (GameObject ennemi in ennemiList)
             {
