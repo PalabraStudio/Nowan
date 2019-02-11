@@ -7,6 +7,6 @@ public class NewGameButton : MonoBehaviour
 {
     public void OnMouseUp()
     {
-        SceneManager.LoadScene("NiveauTest");
+        SceneManager.LoadScene("Cinematique");
     }
 }
