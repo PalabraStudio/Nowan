@@ -47,7 +47,7 @@ public class MoveCaracter : MonoBehaviour
             m_vertical = m_vertical * speed;
         }
         Vector2 mouvement = new Vector2(transform.position.x + m_horizontal, transform.position.y + m_vertical);
-        if (transform.position!=mouvement){moving=true;} else {moving=false;}
+        if (new Vector2(transform.position.x,transform.position.y)!=mouvement){moving=true;} else {moving=false;}
         rb2d.MovePosition(mouvement);
        
     }

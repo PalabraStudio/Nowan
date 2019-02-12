@@ -39,7 +39,6 @@ public class Raycast : MonoBehaviour
             if (GetComponentInParent<MoveEnnemi>().right == true) { dright = 1f; } else { dright = 0f; }
         }
 
-        Debug.Log(GameObject.Find("Player").GetComponent<Invisibility>().is_invisible);
 
 
         Vector2 ray_direction = new Vector2(-dleft + dright, -ddown + dup);
@@ -56,11 +55,11 @@ public class Raycast : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, ray_direction, detection_distance);
         //Debug.Log(hit.transform.gameObject.name);
-        if (hit&&(hit.transform.gameObject.name=="Personnage"|| hit.transform.gameObject.name == "Visu")&&GameObject.Find("Player").GetComponent<Invisibility>().is_invisible==false)
+        if (hit&&(hit.transform.gameObject.name=="Personnage"|| hit.transform.gameObject.name == "Visu")&&hit.transform.gameObject.GetComponent<Invisibility>().is_invisible==false)
         {
 
             Debug.Log(hit.transform.gameObject.name);
-            if(hit.transform.gameObject.GetComponent<MoveCharacter>().moving || hit.transform.gameObject.GetComponent<Animator>().GetInteger("State")==0)
+            if(hit.transform.gameObject.GetComponent<MoveCaracter>().moving || hit.transform.gameObject.GetComponent<Animator>().GetInteger("State")==0)
             {timer = to;}
             Debug.DrawLine(transform.position, new Vector2(ray_direction.x * detection_distance + transform.position.x, ray_direction.y * detection_distance + transform.position.y), Color.blue);
         }
