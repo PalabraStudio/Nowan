@@ -128,7 +128,7 @@ public class CalculateMove : MonoBehaviour {
             if (!onPath)
             {
                 //Retourne jusqu'à un noeud(chemin sur lequel marche l'ennemi)
-                if (nextToPathB) { nextToPath = pPuce.GetComponent<setNode>().noeud; nextToPathB = false; lastKnownPNode = pPuce.GetComponent<setNode>().noeud; }
+                if (nextToPathB) { nextToPath = lastKnownPNode; nextToPathB = false; lastKnownPNode = pPuce.GetComponent<setNode>().noeud; }
 
                 if (DirectionToNode(nextToPath).magnitude > 1)
                 {
