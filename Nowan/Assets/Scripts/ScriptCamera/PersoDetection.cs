@@ -15,14 +15,15 @@ public class PersoDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetComponent<AudioSource>().mute = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player"&&detection)
+        if (collision.tag == "Player"&&detection&&GameObject.Find("Player").GetComponent<Invisibility>().is_invisible==false)
         {
             alarm = true;
+            GetComponent<AudioSource>().mute = false;
         }
     }
 }
