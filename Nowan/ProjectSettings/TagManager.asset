@@ -64,7 +64,7 @@ TagManager:
   - name: Camera
     uniqueID: 933844049
     locked: 0
-  - name: GUI
+  - name: UI
     uniqueID: 2313930265
     locked: 0
   - name: Default

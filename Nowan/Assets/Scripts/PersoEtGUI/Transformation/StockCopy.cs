@@ -38,6 +38,7 @@ public class StockCopy : MonoBehaviour {
         
         if(transforming && slots[0].GetComponent<SpriteRenderer>().sprite != null)
         {
+            Personnage.GetComponent<MoveCaracter>().updateSpeed(slots[0].GetComponent<TransformableID>().ID);
             Personnage.GetComponent<Animator>().SetInteger("State", slots[0].GetComponent<TransformableID>().ID);
             slots[0].GetComponent<SpriteRenderer>().sprite = slots[1].GetComponent<SpriteRenderer>().sprite;
             slots[0].GetComponent<TransformableID>().ID = slots[1].GetComponent<TransformableID>().ID;

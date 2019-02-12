@@ -49,5 +49,12 @@ public class MoveCaracter : MonoBehaviour
         rb2d.MovePosition(mouvement);
        
     }
+
+    public void updateSpeed(int ID)
+    {
+        if (ID == 1) // 1 pour Souris (préconiser l'utilisation d'ENUM la prochaine fois, c'est plus lisible et plus safe)
+            speed = 1;
+        else speed = 1.5f;
+    }
 }
 
