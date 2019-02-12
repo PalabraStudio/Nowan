@@ -107,7 +107,12 @@ public class CalculateMove : MonoBehaviour {
         //Tout les codes à partir d'ici jusquà la balise forcepathfind sont pour la poursuite du perso
         if (lastKnownPNode != null&&CountDown>0) { destination = lastKnownPNode; }//Va chercher le perso
         rebloucle:
-        if (repere||(current== lastKnownPNode && lastKnownPNode==pPuce.GetComponent<setNode>().noeud))//Si on est à côté du perso
+        if (repere)
+        {
+            lastKnownPNode = pPuce.GetComponent<setNode>().noeud;
+            current = lastKnownPNode;
+        }
+        if ((current== lastKnownPNode && lastKnownPNode==pPuce.GetComponent<setNode>().noeud))//Si on est à côté du perso
         {
             //Suit le perso directement
             CountDown = TimeUntilStopFollow;
@@ -123,7 +128,7 @@ public class CalculateMove : MonoBehaviour {
             if (!onPath)
             {
                 //Retourne jusqu'à un noeud(chemin sur lequel marche l'ennemi)
-                if (nextToPathB) { nextToPath = lastKnownPNode; nextToPathB = false; lastKnownPNode = pPuce.GetComponent<setNode>().noeud; }
+                if (nextToPathB) { nextToPath = pPuce.GetComponent<setNode>().noeud; nextToPathB = false; lastKnownPNode = pPuce.GetComponent<setNode>().noeud; }
 
                 if (DirectionToNode(nextToPath).magnitude > 1)
                 {

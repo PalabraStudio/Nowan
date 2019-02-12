@@ -47,7 +47,7 @@ public class Wait : MonoBehaviour
             }
         }
         if (wait < 0) { waiter = 1; }
-        //if (!this.GetComponent<StunEnnemi>().stun) { MoveEnnemi.waiter = waiter; }
+        if (!this.GetComponent<StunEnnemi>().stun) { MoveEnnemi.waiter = waiter; }
         MoveEnnemi.waiter = waiter;
     }
 }
