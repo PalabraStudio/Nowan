@@ -26,4 +26,9 @@ public class Cinematique : MonoBehaviour
                 SceneManager.LoadScene("Level1");
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.Space)) SceneManager.LoadScene("Level1");
+    }
 }
