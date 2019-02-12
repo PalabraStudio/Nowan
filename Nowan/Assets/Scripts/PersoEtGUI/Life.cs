@@ -41,7 +41,7 @@ public class Life : MonoBehaviour
             GetComponent<SpriteRenderer>().color = hit;
             timer -= Time.deltaTime;
         }
-        if (timer <= 0)
+        if (timer <= 0 && GetComponent<Invisibility>().is_invisible==false)
         {
             GetComponent<SpriteRenderer>().color = classic;
         }
