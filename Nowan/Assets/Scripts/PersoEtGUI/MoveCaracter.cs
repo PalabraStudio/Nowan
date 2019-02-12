@@ -11,6 +11,7 @@ public class MoveCaracter : MonoBehaviour
     public Rigidbody2D rb2d;
     public Animator animator;
     private bool m_shift;
+    public bool moving;
     public bool shift { get { return m_shift; } }
     private float m_horizontal;
     public float horizontal { get { return m_horizontal; } }
@@ -46,6 +47,7 @@ public class MoveCaracter : MonoBehaviour
             m_vertical = m_vertical * speed;
         }
         Vector2 mouvement = new Vector2(transform.position.x + m_horizontal, transform.position.y + m_vertical);
+        if (transform.position!=mouvement){moving=true;} else {moving=false;}
         rb2d.MovePosition(mouvement);
        
     }

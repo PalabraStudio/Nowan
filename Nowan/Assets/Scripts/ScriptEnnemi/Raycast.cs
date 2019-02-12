@@ -60,7 +60,8 @@ public class Raycast : MonoBehaviour
         {
 
             Debug.Log(hit.transform.gameObject.name);
-            timer = to;
+            if(hit.transform.gameObject.GetComponent<MoveCharacter>().moving || hit.transform.gameObject.GetComponent<Animator>().GetInteger("State")==0)
+            {timer = to;}
             Debug.DrawLine(transform.position, new Vector2(ray_direction.x * detection_distance + transform.position.x, ray_direction.y * detection_distance + transform.position.y), Color.blue);
         }
         else
