@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213248c5f7c6fe54f965456c43ab84f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detection_distance: 150
+  detection_distance: 120
   dup: 0
   ddown: 0
   dleft: 0
@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 6212981358649131782}
   - component: {fileID: 6212981358649131776}
   - component: {fileID: 6212981358649131778}
-  - component: {fileID: 6212981358649131779}
   - component: {fileID: 6212981358649131785}
   - component: {fileID: 6212981358649131784}
   - component: {fileID: 6212981358649131787}
@@ -300,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac712a3aa6baeab46ad6b9d94bbc9b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeForHit: 1
+  timeForHit: 2
   distance: 20
 --- !u!114 &6212981358649131782
 MonoBehaviour:
@@ -348,12 +347,12 @@ MonoBehaviour:
   following: 0
   lastKnownPNode: {fileID: 0}
   returnLastNode: {x: 0, y: 0}
-  TimeUntilStopFollow: 10
+  TimeUntilStopFollow: 7
   CountDown: 0
   onPath: 0
   nextToPath: {fileID: 0}
   nextToPathB: 0
-  overtime: 20
+  overtime: 10
   entendu: 0
   waitSearch: 0
   waitReturn: 0
@@ -401,28 +400,12 @@ MonoBehaviour:
   right: 0
   animator: {fileID: 6212981358649131785}
   speed: 1
+  sprint: 1.4
   direction: {x: 0, y: 0}
   mouvement: {x: 0, y: 0}
   ismoving: 0
   puce: {fileID: 6212981358640481578}
   waiter: 0
---- !u!114 &6212981358649131779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6212981358649131777}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454a5891a4611bc458ba1da5f6259be8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gauche: {fileID: 21300014, guid: e1acc7d48a77cac48b705caba2f4c4bf, type: 3}
-  droite: {fileID: 21300000, guid: 3f1db1ced938875428e84762a262ff23, type: 3}
-  haut: {fileID: 21300000, guid: ea4a364302f7055458c46d4e65820a9d, type: 3}
-  bas: {fileID: 21300000, guid: 3211c750bc6c71a488eeb8ccacd1cb7a, type: 3}
-  regard: 0
 --- !u!95 &6212981358649131785
 Animator:
   serializedVersion: 3

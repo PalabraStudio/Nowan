@@ -9,9 +9,11 @@ public class StunEnnemy : MonoBehaviour
     private bool stun;
     private GameObject node;
     private GameObject stunTarget;
+    public GameObject dialogue;
     // Start is called before the first frame update
     void Start()
     {
+        dialogue.SetActive(false);
         node = GetComponent<TelCallEnnemy>().nextNode;
 
     }
@@ -26,6 +28,7 @@ public class StunEnnemy : MonoBehaviour
         }
         if (stunTarget != null && stunTarget.GetComponent<CalculateMove>().origine == node && timer<=0 )
         {
+            dialogue.SetActive(true);
             stun = true;
             timer = stunTime;
             this.GetComponent<TelCallEnnemy>().activation = false;
@@ -37,6 +40,7 @@ public class StunEnnemy : MonoBehaviour
         }
         if (stunTarget!=null&&stun&& timer <= 0)
         {
+            dialogue.SetActive(false);
             stun = false;
             stunTarget.GetComponent<CalculateMove>().destination = stunTarget.GetComponent<CalculateMove>().routine[0];
             Debug.Log("ok");

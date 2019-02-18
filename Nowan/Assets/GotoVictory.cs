@@ -19,7 +19,7 @@ public class GotoVictory : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Personnage")
+        if (collision.name == "Personnage" && FindObjectOfType<QuestManager>().quest1Check == true)
         {
             SceneManager.LoadScene("Victory");
         }

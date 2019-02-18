@@ -52,7 +52,11 @@ public class Invisibility : MonoBehaviour
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = classic;
+            if (this.GetComponent<Life>().timer <= 0)
+            {
+                GetComponent<SpriteRenderer>().color = classic;
+            }
+           
             is_invisible = false;
         }
     }

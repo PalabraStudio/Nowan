@@ -8,6 +8,7 @@ public class AudioStream : MonoBehaviour
     private GameObject[] ennemis;
     public AudioSource m_ambMusic;
     public AudioSource m_stressMusic;
+    public GameObject nodetel;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class AudioStream : MonoBehaviour
         repere = false;
         foreach(GameObject ennemi in ennemis)
         {
-            if (!ennemi.GetComponent<CalculateMove>().routining)
+            if (ennemi.GetComponent<CalculateMove>().lastKnownPNode!= null)
             {
                 repere = true;
                 m_stressMusic.UnPause();

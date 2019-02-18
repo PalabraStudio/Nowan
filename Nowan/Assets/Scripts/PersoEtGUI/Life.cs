@@ -9,7 +9,7 @@ public class Life : MonoBehaviour
     public int lifemax;
     private int lifetamp;
     public float timeOfBlank;
-    private float timer;
+    public float timer;
     public Color classic;
     public Color hit;
     public GameObject montre;
@@ -38,6 +38,7 @@ public class Life : MonoBehaviour
         }
         if (timer > 0)
         {
+            Debug.Log("oui");
             GetComponent<SpriteRenderer>().color = hit;
             timer -= Time.deltaTime;
         }

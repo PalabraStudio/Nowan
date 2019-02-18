@@ -8,7 +8,9 @@ public class MoveEnnemi : MonoBehaviour {
     public bool up, down, left, right;
 
     public Animator animator;
-    public float speed = 1f;
+    public float speed;
+    public float sprint;
+    private float currentsp;
     private Rigidbody2D rb2d;
     public Vector2 direction;
     public Vector2 mouvement;
@@ -31,7 +33,15 @@ public class MoveEnnemi : MonoBehaviour {
         {
             puce.SetActive(false); puce.SetActive(true);
         }
-        Vector2 mouvement = new Vector2(transform.position.x + direction.x*speed*waiter, transform.position.y + direction.y*speed*waiter);
+        if(GetComponent<CalculateMove>().lastKnownPNode!= null)
+        {
+            currentsp = sprint;
+        }
+        else
+        {
+            currentsp = speed;
+        }
+        Vector2 mouvement = new Vector2(transform.position.x + direction.x*currentsp*waiter, transform.position.y + direction.y*currentsp*waiter);
         rb2d.MovePosition(mouvement);
 
         //Debug.Log(direction.x);

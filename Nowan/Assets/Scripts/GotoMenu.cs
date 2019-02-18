@@ -14,7 +14,7 @@ public class GotoMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("return")&&SceneManager.GetActiveScene()==SceneManager.GetSceneByName("GameOver"))
+        if (Input.GetKeyDown("return")&&(SceneManager.GetActiveScene()==SceneManager.GetSceneByName("GameOver")|| SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Victory")))
         {
             LoadMenu();
         }
